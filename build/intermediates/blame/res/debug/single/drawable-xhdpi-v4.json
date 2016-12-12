@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/aedan/FTC/ftc_app-master/TeamCode/build/intermediates/res/merged/debug/drawable-xhdpi-v4/icon_robotcontroller.png",
+        "source": "/home/aedan/FTC/ftc_app-master/TeamCode/build/intermediates/exploded-aar/ftc_app-master/FtcRobotController/unspecified/res/drawable-xhdpi-v4/icon_robotcontroller.png"
+    },
+    {
+        "merged": "/home/aedan/FTC/ftc_app-master/TeamCode/build/intermediates/res/merged/debug/drawable-xhdpi-v4/icon_menu.png",
+        "source": "/home/aedan/FTC/ftc_app-master/TeamCode/build/intermediates/exploded-aar/ftc_app-master/FtcRobotController/unspecified/res/drawable-xhdpi-v4/icon_menu.png"
+    },
+    {
+        "merged": "/home/aedan/FTC/ftc_app-master/TeamCode/build/intermediates/res/merged/debug/drawable-xhdpi-v4/ic_launcher.png",
+        "source": "/home/aedan/FTC/ftc_app-master/TeamCode/build/intermediates/exploded-aar/ftc_app-master/FtcRobotController/unspecified/res/drawable-xhdpi-v4/ic_launcher.png"
+    }
+]
