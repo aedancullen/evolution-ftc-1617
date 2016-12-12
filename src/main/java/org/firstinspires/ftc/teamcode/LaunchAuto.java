@@ -87,8 +87,7 @@ public class LaunchAuto extends LinearOpMode {
                 ),
                 DcMotorSimple.Direction.REVERSE,
                 DcMotor.RunMode.RUN_USING_ENCODER,
-                DcMotor.ZeroPowerBehavior.BRAKE,
-                MotorConfigurations.QUAD_NONDIAGONAL_SHORT, 0.002, 0.01, 0.1);
+                MotorConfigurations.QUAD_NONDIAGONAL_SHORT);
         //fruity.setupRamper(0.002, 0.002);
 
         collector = hardwareMap.dcMotor.get("dcCollector0");
