@@ -56,7 +56,7 @@ public class Marv7UserControl extends OpMode {
                 DcMotor.RunMode.RUN_USING_ENCODER,
                 MotorConfigurations.QUAD_NONDIAGONAL_SHORT);
 
-        fruity.setupRamper(0.002, 0.002);
+        fruity.setupRamper(0.002, 0.002, false);
 
         collector = hardwareMap.dcMotor.get("dcCollector0");
         launchL = hardwareMap.dcMotor.get("dcLaunchL");
