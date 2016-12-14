@@ -113,10 +113,10 @@ public class LaunchAutoNew extends LinearOpMode {
         EssentialHeading target;
         double gain = 0.01;
 
-        target = new EssentialHeading(45);
+        target = new EssentialHeading(40);
         start = omni90.getCurrentPosition();
         while (!(omni90.getCurrentPosition() > start + 4752 && opModeIsActive())) {
-            fruity.drive(new EssentialHeading(45), -0.2, fruity.getNecessaryRotationPower(target, gain));
+            fruity.drive(target, -0.2, fruity.getNecessaryRotationPower(target, gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
 
