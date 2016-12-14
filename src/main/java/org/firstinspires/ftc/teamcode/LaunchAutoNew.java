@@ -60,7 +60,7 @@ public class LaunchAutoNew extends LinearOpMode {
     }**/
 
     public void runOpMode() {
-        fruity = new FruityController(hardwareMap, telemetry, "",
+        fruity = new FruityController(hardwareMap, telemetry, "imu",
                 Arrays.asList(
                         hardwareMap.dcMotor.get("dcOmni0"),
                         hardwareMap.dcMotor.get("dcOmni90"),
@@ -70,7 +70,7 @@ public class LaunchAutoNew extends LinearOpMode {
                 DcMotorSimple.Direction.REVERSE,
                 DcMotor.RunMode.RUN_USING_ENCODER,
                 MotorConfigurations.QUAD_NONDIAGONAL_SHORT);
-        //fruity.setupRamper(0.002, 0.002);
+        fruity.setupRamper(0.002, 0.002, false);
 
         collector = hardwareMap.dcMotor.get("dcCollector0");
         launchL = hardwareMap.dcMotor.get("dcLaunchL");
@@ -110,13 +110,17 @@ public class LaunchAutoNew extends LinearOpMode {
         launchL.setPower(0);
         launchR.setPower(0);
 
+        EssentialHeading target;
+        double gain = 0.01;
 
+        target = new EssentialHeading(45);
         start = omni90.getCurrentPosition();
-        fruity.drive(new EssentialHeading(45), -0.2, 0);
-        while (!(omni90.getCurrentPosition() > start + 4752 && opModeIsActive())) {}
+        while (!(omni90.getCurrentPosition() > start + 4752 && opModeIsActive())) {
+            fruity.drive(new EssentialHeading(45), -0.2, fruity.getNecessaryRotationPower(target, gain));
+        }
         fruity.drive(new EssentialHeading(0), 0, 0);
 
-        start = omni90.getCurrentPosition();
+        /**start = omni90.getCurrentPosition();
         fruity.drive(new EssentialHeading(0), 0, 0.2);
         while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
         fruity.drive(new EssentialHeading(0), 0, 0);
@@ -139,7 +143,7 @@ public class LaunchAutoNew extends LinearOpMode {
         start = omni90.getCurrentPosition();
         fruity.drive(new EssentialHeading(0), -0.2, 0);
         while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
-        fruity.drive(new EssentialHeading(0), 0, 0);
+        fruity.drive(new EssentialHeading(0), 0, 0);**/
 
     }
 
