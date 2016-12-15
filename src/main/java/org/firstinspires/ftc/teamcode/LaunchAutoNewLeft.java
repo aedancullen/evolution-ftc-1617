@@ -13,8 +13,8 @@ import io.github.aedancullen.fruity.EssentialHeading;
 import io.github.aedancullen.fruity.FruityController;
 import io.github.aedancullen.fruity.MotorConfigurations;
 
-@Autonomous(name="NEW Auto-launching Autonomous", group="MarvMk7")
-public class LaunchAutoNew extends LinearOpMode {
+@Autonomous(name="NEW Auto-launching Autonomous - LEFT", group="MarvMk7")
+public class LaunchAutoNewLeft extends LinearOpMode {
 
     DcMotor omni90;
     DcMotor omni0;
@@ -32,32 +32,32 @@ public class LaunchAutoNew extends LinearOpMode {
     LightSensor lightFront;
 
     /**public void oldinit() {
-        fruity = new FruityController(hardwareMap, telemetry, "",
-                Arrays.asList(
-                        hardwareMap.dcMotor.get("dcOmni0"),
-                        hardwareMap.dcMotor.get("dcOmni90"),
-                        hardwareMap.dcMotor.get("dcOmni180"),
-                        hardwareMap.dcMotor.get("dcOmni270")
-                ),
-                DcMotorSimple.Direction.REVERSE,
-                DcMotor.RunMode.RUN_USING_ENCODER,
-                MotorConfigurations.QUAD_NONDIAGONAL_SHORT);
-        //fruity.setupRamper(0.002, 0.002);
+     fruity = new FruityController(hardwareMap, telemetry, "",
+     Arrays.asList(
+     hardwareMap.dcMotor.get("dcOmni0"),
+     hardwareMap.dcMotor.get("dcOmni90"),
+     hardwareMap.dcMotor.get("dcOmni180"),
+     hardwareMap.dcMotor.get("dcOmni270")
+     ),
+     DcMotorSimple.Direction.REVERSE,
+     DcMotor.RunMode.RUN_USING_ENCODER,
+     MotorConfigurations.QUAD_NONDIAGONAL_SHORT);
+     //fruity.setupRamper(0.002, 0.002);
 
-        collector = hardwareMap.dcMotor.get("dcCollector0");
-        launchL = hardwareMap.dcMotor.get("dcLaunchL");
-        launchL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        launchL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        launchR = hardwareMap.dcMotor.get("dcLaunchR");
-        launchR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        launchR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        launchR.setDirection(DcMotorSimple.Direction.REVERSE);
-        launchFlap = hardwareMap.servo.get("svFlap0");
-        launchFlap.setDirection(Servo.Direction.REVERSE);
-        omni90 = hardwareMap.dcMotor.get("dcOmni90");
-        omni0 = hardwareMap.dcMotor.get("dcOmni0");
+     collector = hardwareMap.dcMotor.get("dcCollector0");
+     launchL = hardwareMap.dcMotor.get("dcLaunchL");
+     launchL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+     launchL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+     launchR = hardwareMap.dcMotor.get("dcLaunchR");
+     launchR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+     launchR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+     launchR.setDirection(DcMotorSimple.Direction.REVERSE);
+     launchFlap = hardwareMap.servo.get("svFlap0");
+     launchFlap.setDirection(Servo.Direction.REVERSE);
+     omni90 = hardwareMap.dcMotor.get("dcOmni90");
+     omni0 = hardwareMap.dcMotor.get("dcOmni0");
 
-    }**/
+     }**/
 
     public void runOpMode() {
         fruity = new FruityController(hardwareMap, telemetry, "imu",
@@ -121,29 +121,29 @@ public class LaunchAutoNew extends LinearOpMode {
         fruity.drive(new EssentialHeading(0), 0, 0);
 
         /**start = omni90.getCurrentPosition();
-        fruity.drive(new EssentialHeading(0), 0, 0.2);
-        while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
-        fruity.drive(new EssentialHeading(0), 0, 0);
+         fruity.drive(new EssentialHeading(0), 0, 0.2);
+         while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
+         fruity.drive(new EssentialHeading(0), 0, 0);
 
-        start = omni90.getCurrentPosition();
-        fruity.drive(new EssentialHeading(0), -0.2, 0);
-        while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
-        fruity.drive(new EssentialHeading(0), 0, 0);
+         start = omni90.getCurrentPosition();
+         fruity.drive(new EssentialHeading(0), -0.2, 0);
+         while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
+         fruity.drive(new EssentialHeading(0), 0, 0);
 
-        double light = lightFront.getLightDetected();
+         double light = lightFront.getLightDetected();
 
-        if (light > 0 && light < 98) {
-            // is bad
-            start = omni90.getCurrentPosition();
-            fruity.drive(new EssentialHeading(-90), -0.2, 0);
-            while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
-            fruity.drive(new EssentialHeading(0), 0, 0);
-        }
+         if (light > 0 && light < 98) {
+         // is bad
+         start = omni90.getCurrentPosition();
+         fruity.drive(new EssentialHeading(-90), -0.2, 0);
+         while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
+         fruity.drive(new EssentialHeading(0), 0, 0);
+         }
 
-        start = omni90.getCurrentPosition();
-        fruity.drive(new EssentialHeading(0), -0.2, 0);
-        while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
-        fruity.drive(new EssentialHeading(0), 0, 0);**/
+         start = omni90.getCurrentPosition();
+         fruity.drive(new EssentialHeading(0), -0.2, 0);
+         while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
+         fruity.drive(new EssentialHeading(0), 0, 0);**/
 
     }
 
