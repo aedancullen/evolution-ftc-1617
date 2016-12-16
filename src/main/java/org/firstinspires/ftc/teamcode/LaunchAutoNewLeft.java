@@ -85,9 +85,7 @@ public class LaunchAutoNewLeft extends LinearOpMode {
         launchFlap.setDirection(Servo.Direction.REVERSE);
         omni90 = hardwareMap.dcMotor.get("dcOmni90");
 
-        colorFront = hardwareMap.colorSensor.get("colorFront");
-
-        colorFront.enableLed(false);
+        //colorFront = hardwareMap.colorSensor.get("colorFront");
 
         // This is the FitnessGRAM Pacer Test. Line up at the start.
         waitForStart();
@@ -134,7 +132,7 @@ public class LaunchAutoNewLeft extends LinearOpMode {
         fruity.drive(new EssentialHeading(0), 0, 0);
 
 
-        if (colorFront.argb() == 0 /**whatever it is**/) {
+        if (/**colorFront.argb() == 0/** /**whatever it is**/true) {
             // good, do nothing and move on to bump
         }
         else {
