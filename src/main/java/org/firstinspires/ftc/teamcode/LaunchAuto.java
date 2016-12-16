@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -15,6 +16,7 @@ import io.github.aedancullen.fruity.FruityController;
 import io.github.aedancullen.fruity.MotorConfigurations;
 
 @Autonomous(name="Simple Auto-launching Autonomous", group="MarvMk7")
+@Disabled
 public class LaunchAuto extends LinearOpMode {
 
     DcMotor omni90;
