@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.LightSensor;
@@ -29,7 +30,7 @@ public class LaunchAutoNewLeft extends LinearOpMode {
     DcMotor launchR;
     Servo launchFlap;
 
-    LightSensor lightFront;
+    ColorSensor colorFront;
 
     /**public void oldinit() {
      fruity = new FruityController(hardwareMap, telemetry, "",
@@ -84,11 +85,11 @@ public class LaunchAutoNewLeft extends LinearOpMode {
         launchFlap.setDirection(Servo.Direction.REVERSE);
         omni90 = hardwareMap.dcMotor.get("dcOmni90");
 
-        lightFront = hardwareMap.lightSensor.get("lightFront");
+        colorFront = hardwareMap.colorSensor.get("colorFront");
 
-        lightFront.enableLed(false);
+        colorFront.enableLed(false);
 
-
+        // This is the FitnessGRAM Pacer Test. Line up at the start.
         waitForStart();
 
         int start;
@@ -127,10 +128,40 @@ public class LaunchAutoNewLeft extends LinearOpMode {
         fruity.drive(new EssentialHeading(0), 0, 0);
 
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() < start - 1000 && opModeIsActive())) {
+        while (!(omni90.getCurrentPosition() < start - 500 && opModeIsActive())) {
             fruity.driveWithRamper(target, -0.5, fruity.getNecessaryRotationPower(target, gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
+
+
+        if (colorFront.argb() == 0 /**whatever it is**/) {
+            // good, do nothing and move on to bump
+        }
+        else {
+            // not good, slide right a tad
+            target = new EssentialHeading(0);
+            start = omni0.getCurrentPosition();
+            while (!(omni0.getCurrentPosition() < start + 100 && opModeIsActive())) {
+                fruity.driveWithRamper(target, 0.5, fruity.getNecessaryRotationPower(target, gain));
+            }
+            fruity.drive(new EssentialHeading(0), 0, 0);
+        }
+
+        // bump it
+        // forward
+        start = omni90.getCurrentPosition();
+        while (!(omni90.getCurrentPosition() < start - 100 && opModeIsActive())) {
+            fruity.driveWithRamper(target, -0.5, fruity.getNecessaryRotationPower(target, gain));
+        }
+        fruity.drive(new EssentialHeading(0), 0, 0);
+
+        // reverse
+        start = omni90.getCurrentPosition();
+        while (!(omni90.getCurrentPosition() > start + 100 && opModeIsActive())) {
+            fruity.driveWithRamper(target, 0.5, fruity.getNecessaryRotationPower(target, gain));
+        }
+        fruity.drive(new EssentialHeading(0), 0, 0);
+
 
         /**start = omni90.getCurrentPosition();
          fruity.drive(new EssentialHeading(0), 0, 0.2);
