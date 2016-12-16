@@ -126,8 +126,8 @@ public class LaunchAutoNewLeft extends LinearOpMode {
         fruity.drive(new EssentialHeading(0), 0, 0);
 
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() < start - 500 && opModeIsActive())) {
-            fruity.driveWithRamper(target, -0.5, fruity.getNecessaryRotationPower(target, gain));
+        while (!(omni90.getCurrentPosition() < start - 200 && opModeIsActive())) {
+            fruity.driveWithRamper(target, -0.1, fruity.getNecessaryRotationPower(target, gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
 
@@ -140,7 +140,7 @@ public class LaunchAutoNewLeft extends LinearOpMode {
             target = new EssentialHeading(0);
             start = omni0.getCurrentPosition();
             while (!(omni0.getCurrentPosition() < start + 100 && opModeIsActive())) {
-                fruity.driveWithRamper(target, 0.5, fruity.getNecessaryRotationPower(target, gain));
+                fruity.driveWithRamper(target, 0.1, fruity.getNecessaryRotationPower(target, gain));
             }
             fruity.drive(new EssentialHeading(0), 0, 0);
         }
@@ -149,14 +149,14 @@ public class LaunchAutoNewLeft extends LinearOpMode {
         // forward
         start = omni90.getCurrentPosition();
         while (!(omni90.getCurrentPosition() < start - 100 && opModeIsActive())) {
-            fruity.driveWithRamper(target, -0.5, fruity.getNecessaryRotationPower(target, gain));
+            fruity.driveWithRamper(target, -0.1, fruity.getNecessaryRotationPower(target, gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
 
         // reverse
         start = omni90.getCurrentPosition();
         while (!(omni90.getCurrentPosition() > start + 100 && opModeIsActive())) {
-            fruity.driveWithRamper(target, 0.5, fruity.getNecessaryRotationPower(target, gain));
+            fruity.driveWithRamper(target, 0.1, fruity.getNecessaryRotationPower(target, gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
 
