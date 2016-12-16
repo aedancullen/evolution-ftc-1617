@@ -95,7 +95,7 @@ public class LaunchAutoNewLeft extends LinearOpMode {
 
         launchL.setPower(LAUNCH_MOTOR_SPEED);
         launchR.setPower(LAUNCH_MOTOR_SPEED);
-        sleep(800);
+        sleep(500);
 
         launchFlap.setPosition(FLAP_UP_POSITION);
         sleep(400);

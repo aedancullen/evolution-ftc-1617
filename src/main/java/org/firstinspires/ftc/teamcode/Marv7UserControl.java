@@ -22,7 +22,7 @@ public class Marv7UserControl extends OpMode {
 
     final int LAUNCH_STATE_STARTING = 1; // wheels accelerating, flipper down
 
-    final int LAUNCH_MS_TO_FLIPPING = 800; // time left until flipping state can be reached (e.g wheel accelerate time)
+    final int LAUNCH_MS_TO_FLIPPING = 500; // time left until flipping state can be reached (e.g wheel accelerate time)
     int LAUNCH_MS_TO_FLIPPING_LEFT = 0;
     final int LAUNCH_STATE_FLIPPING = 2; // wheels on, flipper rising
 
