@@ -21,7 +21,7 @@ public class LaunchAutoNewRight extends LinearOpMode {
     DcMotor omni0;
 
     final double FLAP_UP_POSITION = 0.5;
-    final double LAUNCH_MOTOR_SPEED = 1;
+    final double LAUNCH_MOTOR_SPEED = 0.7;
 
     FruityController fruity;
 
