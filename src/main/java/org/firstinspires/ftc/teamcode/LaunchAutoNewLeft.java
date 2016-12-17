@@ -74,10 +74,12 @@ public class LaunchAutoNewLeft extends LinearOpMode {
 
         collector = hardwareMap.dcMotor.get("dcCollector0");
         launchL = hardwareMap.dcMotor.get("dcLaunchL");
-        launchL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        launchL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        launchL.setMaxSpeed(2400);
         launchL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         launchR = hardwareMap.dcMotor.get("dcLaunchR");
-        launchR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        launchR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        launchR.setMaxSpeed(2400);
         launchR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         launchR.setDirection(DcMotorSimple.Direction.REVERSE);
         launchFlap = hardwareMap.servo.get("svFlap0");
