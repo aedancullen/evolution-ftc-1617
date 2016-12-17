@@ -112,7 +112,7 @@ public class CatBallAutonomousLeft extends LinearOpMode {
         launchR.setPower(0);
 
         EssentialHeading target;
-        double gain = 0.006;
+        double gain = 0.012;
 
         target = new EssentialHeading(40);
         start = omni90.getCurrentPosition();

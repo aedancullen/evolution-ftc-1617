@@ -113,7 +113,7 @@ public class LaunchAutoNewLeft extends LinearOpMode {
         launchR.setPower(0);
 
         EssentialHeading target;
-        double gain = 0.01;
+        double gain = 0.012;
 
         target = new EssentialHeading(40);
         start = omni90.getCurrentPosition();

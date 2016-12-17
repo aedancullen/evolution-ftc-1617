@@ -112,7 +112,7 @@ public class CatBallAutonomousRight extends LinearOpMode {
         launchR.setPower(0);
 
         EssentialHeading target;
-        double gain = 0.006;
+        double gain = 0.012;
 
         target = new EssentialHeading(-40);
         start = omni90.getCurrentPosition();
@@ -128,8 +128,15 @@ public class CatBallAutonomousRight extends LinearOpMode {
         fruity.drive(new EssentialHeading(0), 0, 0);
 
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 5000 && opModeIsActive())) {
-            fruity.driveWithRamper(target, -0.8, fruity.getNecessaryRotationPower(target, gain));
+        while (!(omni90.getCurrentPosition() > start + 2000 && opModeIsActive())) {
+            fruity.driveWithRamper(target, -0.5, fruity.getNecessaryRotationPower(target, gain));
+        }
+        fruity.drive(new EssentialHeading(0), 0, 0);
+
+
+        target = new EssentialHeading(90);
+        while (!fruity.isFacing(target) && opModeIsActive()) {
+            fruity.driveWithRamper(target, 0, fruity.getNecessaryRotationPower(target, 0.02));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
 
