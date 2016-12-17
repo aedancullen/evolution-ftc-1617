@@ -71,7 +71,7 @@ public class CatBallAutonomousRight extends LinearOpMode {
                 DcMotorSimple.Direction.REVERSE,
                 DcMotor.RunMode.RUN_USING_ENCODER,
                 MotorConfigurations.QUAD_NONDIAGONAL_SHORT);
-        fruity.setupRamper(0.002, 0.002, false);
+        fruity.setupRamper(0.001, 0.001, false);
 
         collector = hardwareMap.dcMotor.get("dcCollector0");
         launchL = hardwareMap.dcMotor.get("dcLaunchL");
@@ -128,7 +128,7 @@ public class CatBallAutonomousRight extends LinearOpMode {
         fruity.drive(new EssentialHeading(0), 0, 0);
 
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 1000 && opModeIsActive())) {
+        while (!(omni90.getCurrentPosition() > start + 5000 && opModeIsActive())) {
             fruity.driveWithRamper(target, -0.8, fruity.getNecessaryRotationPower(target, gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
