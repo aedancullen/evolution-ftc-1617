@@ -86,6 +86,7 @@ public class LaunchAutoNewRight extends LinearOpMode {
         launchFlap = hardwareMap.servo.get("svFlap0");
         launchFlap.setDirection(Servo.Direction.REVERSE);
         omni90 = hardwareMap.dcMotor.get("dcOmni90");
+        omni0 = hardwareMap.dcMotor.get("dcOmni0");
 
         colorFront = hardwareMap.colorSensor.get("colorFront");
         colorFront.enableLed(false);
@@ -129,7 +130,7 @@ public class LaunchAutoNewRight extends LinearOpMode {
         fruity.drive(new EssentialHeading(0), 0, 0);
 
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 550 && opModeIsActive())) {
+        while (!(omni90.getCurrentPosition() > start + 350 && opModeIsActive())) {
             fruity.driveWithRamper(target, -0.1, fruity.getNecessaryRotationPower(target, gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
