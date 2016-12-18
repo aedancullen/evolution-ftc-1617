@@ -141,7 +141,7 @@ public class LaunchAutoNewLeft extends LinearOpMode {
         int leftDriveDistance;
 
         colorFront.enableLed(false);
-        if (colorFront.blue() < colorFront.red()) {
+        if (colorFront.blue() > colorFront.red()) {
             // good, slide left a tad
             target = new EssentialHeading(0);
             start = omni0.getCurrentPosition();
