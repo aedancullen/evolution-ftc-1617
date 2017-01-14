@@ -56,7 +56,7 @@ public class Marv7UserControl extends OpMode {
                 DcMotor.RunMode.RUN_USING_ENCODER,
                 MotorConfigurations.QUAD_NONDIAGONAL_SHORT);
 
-        fruity.setupRamper(0.003, 0.01, 0.05, true);
+        fruity.setupRamper(0.0001, 0.02, 0.1, true);
 
         collector = hardwareMap.dcMotor.get("dcCollector0");
         launchL = hardwareMap.dcMotor.get("dcLaunchL");
@@ -75,7 +75,7 @@ public class Marv7UserControl extends OpMode {
     private long lastMillis = System.currentTimeMillis();
     public void loop() {
         // Driver 1 (driving)
-        fruity.handleGamepad(gamepad1, 0.003);
+        fruity.handleGamepad(gamepad1, 0.0015);
 
         // Driver 2 (accessories)
         if (gamepad2.a) {
