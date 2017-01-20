@@ -56,7 +56,7 @@ public class Marv7UserControl extends OpMode {
                 DcMotor.RunMode.RUN_USING_ENCODER,
                 MotorConfigurations.QUAD_NONDIAGONAL_SHORT);
 
-        fruity.setupRamper(0.002, 0.008, 0.05, true);
+        fruity.setupRamper(0.001, 0.01, 0.05, false);
 
         hardwareMap.dcMotor.get("dcOmni0").setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         hardwareMap.dcMotor.get("dcOmni90").setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
