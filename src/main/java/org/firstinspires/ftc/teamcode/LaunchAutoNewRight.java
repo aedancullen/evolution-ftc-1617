@@ -114,11 +114,11 @@ public class LaunchAutoNewRight extends LinearOpMode {
         launchR.setPower(0);
 
         EssentialHeading target;
-        double gain = 0.012;
+        double gain = 0.006;
 
         target = new EssentialHeading(40);
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 6400) && opModeIsActive()) {
+        while (!(omni90.getCurrentPosition() > start + 6000) && opModeIsActive()) {
             fruity.driveWithRamper(target, -0.5, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
@@ -129,10 +129,8 @@ public class LaunchAutoNewRight extends LinearOpMode {
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
 
-        sleep(1000);
-
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 200) && opModeIsActive()) {
+        while (!(omni90.getCurrentPosition() > start + 1000) && opModeIsActive()) {
             fruity.driveWithRamper(target, -0.1, fruity.getNecessaryRotationPower(target, gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
