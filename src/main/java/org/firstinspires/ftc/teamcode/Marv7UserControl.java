@@ -79,7 +79,7 @@ public class Marv7UserControl extends OpMode {
     private long lastMillis = System.currentTimeMillis();
     public void loop() {
         // Driver 1 (driving)
-        fruity.handleGamepad(gamepad1, 0.006);
+        fruity.handleGamepad(gamepad1, 0.008);
 
         // Driver 2 (accessories)
         if (gamepad2.a) {
