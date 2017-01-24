@@ -71,7 +71,7 @@ public class LaunchAutoNewRight extends LinearOpMode {
                 DcMotorSimple.Direction.REVERSE,
                 DcMotor.RunMode.RUN_USING_ENCODER,
                 MotorConfigurations.QUAD_NONDIAGONAL_SHORT);
-        fruity.setupRamper(0.001, 0.001, false);
+        //fruity.setupRamper(0.001, 0.001, false);
 
         collector = hardwareMap.dcMotor.get("dcCollector0");
         launchL = hardwareMap.dcMotor.get("dcLaunchL");
