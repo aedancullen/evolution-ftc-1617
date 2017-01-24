@@ -150,7 +150,7 @@ public class LaunchAutoNewRight extends LinearOpMode {
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
 
-        // ----------------------------
+        /** // ----------------------------
         gain = 0.008;
 
         colorFront.enableLed(false);
@@ -189,8 +189,8 @@ public class LaunchAutoNewRight extends LinearOpMode {
         while (!(omni90.getCurrentPosition() < start - 400) && opModeIsActive()) {
             fruity.driveWithRamper(target, 0.1, fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
         }
-        fruity.drive(new EssentialHeading(0), 0, 0);
-        //doPush();
+        fruity.drive(new EssentialHeading(0), 0, 0); **/
+        doPush();
     }
 
     int doPush() {
