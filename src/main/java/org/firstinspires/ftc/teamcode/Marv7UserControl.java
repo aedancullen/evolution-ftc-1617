@@ -31,7 +31,7 @@ public class Marv7UserControl extends OpMode {
     final int LAUNCH_STATE_RETRACTING = 3; // wheels on, flipper retracting
 
     final double FLAP_UP_POSITION = 0.5;
-    final double LAUNCH_MOTOR_SPEED = 0.6;
+    final double LAUNCH_MOTOR_SPEED = 1;
 
     FruityController fruity;
 
@@ -65,11 +65,11 @@ public class Marv7UserControl extends OpMode {
         collector = hardwareMap.dcMotor.get("dcCollector0");
         launchL = hardwareMap.dcMotor.get("dcLaunchL");
         launchL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        launchL.setMaxSpeed(2400);
+        launchL.setMaxSpeed(13000);
         launchL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         launchR = hardwareMap.dcMotor.get("dcLaunchR");
         launchR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        launchR.setMaxSpeed(2400);
+        launchR.setMaxSpeed(13000);
         launchR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         launchR.setDirection(DcMotorSimple.Direction.REVERSE);
         launchFlap = hardwareMap.servo.get("svFlap0");
