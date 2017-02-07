@@ -85,7 +85,7 @@ public class LaunchAutoNewLeft extends LinearOpMode {
         launchR.setDirection(DcMotorSimple.Direction.REVERSE);
         launchFlap = hardwareMap.servo.get("svFlap0");
         launchFlap.setDirection(Servo.Direction.REVERSE);
-        omni90 = hardwareMap.dcMotor.get("dcOmni90");
+        omni90 = hardwareMap.dcMotor.get("dcOmni270");
         omni0 = hardwareMap.dcMotor.get("dcOmni0");
 
         colorFront = hardwareMap.colorSensor.get("colorFront");
@@ -118,7 +118,7 @@ public class LaunchAutoNewLeft extends LinearOpMode {
 
         target = new EssentialHeading(-40);
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 6100) && opModeIsActive()) {
+        while (!(omni90.getCurrentPosition() < start - 6100) && opModeIsActive()) {
             fruity.driveWithRamper(target, -0.5, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
@@ -130,7 +130,7 @@ public class LaunchAutoNewLeft extends LinearOpMode {
         fruity.drive(new EssentialHeading(0), 0, 0);
 
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 1300) && opModeIsActive()) {
+        while (!(omni90.getCurrentPosition() < start - 1100) && opModeIsActive()) {
             fruity.driveWithRamper(target, -0.2, fruity.getNecessaryRotationPower(target, gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
@@ -194,10 +194,9 @@ public class LaunchAutoNewLeft extends LinearOpMode {
 
         target = new EssentialHeading(-50);
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() < start - 4500) && opModeIsActive()) {
-            fruity.driveWithRamper(target, 0.6, fruity.getNecessaryRotationPower(new EssentialHeading(-90), gain));
+        while (!(omni90.getCurrentPosition() > start + 4500) && opModeIsActive()) {
+            fruity.driveWithRamper(target, 0.9, fruity.getNecessaryRotationPower(new EssentialHeading(-90), gain));
         }
-        fruity.drive(new EssentialHeading(0), 0, 0);
 
         collector.setPower(-1);
 
@@ -216,12 +215,6 @@ public class LaunchAutoNewLeft extends LinearOpMode {
         int leftDriveDistance;
         int start;
 
-        target = new EssentialHeading(-90);
-        start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 100) && opModeIsActive()) {
-            fruity.driveWithRamper(target, -0.4, fruity.getNecessaryRotationPower(target, gain));
-        }
-        fruity.drive(new EssentialHeading(0), 0, 0);
 
         colorFront.enableLed(false);
         if (colorFront.blue() > colorFront.red()) {
@@ -232,7 +225,7 @@ public class LaunchAutoNewLeft extends LinearOpMode {
                 fruity.driveWithRamper(target, -0.1, fruity.getNecessaryRotationPower(new EssentialHeading(-90), gain));
             }
             fruity.drive(new EssentialHeading(0), 0, 0);
-            leftDriveDistance = 5050;
+            leftDriveDistance = 5250;
         } else {
             // not good, slide right a tad
             target = new EssentialHeading(0);
@@ -241,14 +234,14 @@ public class LaunchAutoNewLeft extends LinearOpMode {
                 fruity.driveWithRamper(target, 0.1, fruity.getNecessaryRotationPower(new EssentialHeading(-90), gain));
             }
             fruity.drive(new EssentialHeading(0), 0, 0);
-            leftDriveDistance = 5650;
+            leftDriveDistance = 5850;
         }
 
         // bump it
         // forward
         target = new EssentialHeading(90);
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 400) && opModeIsActive()) {
+        while (!(omni90.getCurrentPosition() < start - 400) && opModeIsActive()) {
             fruity.driveWithRamper(target, 0.1, fruity.getNecessaryRotationPower(new EssentialHeading(-90), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
@@ -256,7 +249,7 @@ public class LaunchAutoNewLeft extends LinearOpMode {
         // reverse
         target = new EssentialHeading(-90);
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() < start - 500) && opModeIsActive()) {
+        while (!(omni90.getCurrentPosition() > start + 400) && opModeIsActive()) {
             fruity.driveWithRamper(target, 0.1, fruity.getNecessaryRotationPower(new EssentialHeading(-90), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);

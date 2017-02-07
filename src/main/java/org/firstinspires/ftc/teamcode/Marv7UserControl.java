@@ -58,10 +58,6 @@ public class Marv7UserControl extends OpMode {
 
         fruity.setupRamper(0.001, 0.01, 0.05, false);
 
-        hardwareMap.dcMotor.get("dcOmni0").setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        hardwareMap.dcMotor.get("dcOmni90").setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        hardwareMap.dcMotor.get("dcOmni180").setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        hardwareMap.dcMotor.get("dcOmni270").setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         collector = hardwareMap.dcMotor.get("dcCollector0");
         launchL = hardwareMap.dcMotor.get("dcLaunchL");
         launchL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
