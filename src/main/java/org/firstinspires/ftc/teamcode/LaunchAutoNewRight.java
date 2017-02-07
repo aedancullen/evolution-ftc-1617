@@ -14,7 +14,7 @@ import io.github.aedancullen.fruity.EssentialHeading;
 import io.github.aedancullen.fruity.FruityController;
 import io.github.aedancullen.fruity.MotorConfigurations;
 
-@Autonomous(name="Auto-launching Autonomous - RIGHT", group="MarvMk7")
+@Autonomous(name="Auto-launching Autonomous - RIGHT/BULE", group="MarvMk7")
 public class LaunchAutoNewRight extends LinearOpMode {
 
     DcMotor omni90;

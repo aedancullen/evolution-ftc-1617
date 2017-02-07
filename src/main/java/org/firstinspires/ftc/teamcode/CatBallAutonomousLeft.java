@@ -14,7 +14,7 @@ import io.github.aedancullen.fruity.EssentialHeading;
 import io.github.aedancullen.fruity.FruityController;
 import io.github.aedancullen.fruity.MotorConfigurations;
 
-@Autonomous(name="Cat Ball Autonomous - LEFT", group="MarvMk7")
+@Autonomous(name="Cat Ball Autonomous - LEFT/RED", group="MarvMk7")
 public class CatBallAutonomousLeft extends LinearOpMode {
 
     DcMotor omni90;
@@ -71,7 +71,7 @@ public class CatBallAutonomousLeft extends LinearOpMode {
                 DcMotorSimple.Direction.REVERSE,
                 DcMotor.RunMode.RUN_USING_ENCODER,
                 MotorConfigurations.QUAD_NONDIAGONAL_SHORT);
-        fruity.setupRamper(0.001, 0.001, false);
+        //fruity.setupRamper(0.001, 0.001, false);
 
         collector = hardwareMap.dcMotor.get("dcCollector0");
         launchL = hardwareMap.dcMotor.get("dcLaunchL");
@@ -86,8 +86,10 @@ public class CatBallAutonomousLeft extends LinearOpMode {
         launchFlap = hardwareMap.servo.get("svFlap0");
         launchFlap.setDirection(Servo.Direction.REVERSE);
         omni90 = hardwareMap.dcMotor.get("dcOmni90");
+        omni0 = hardwareMap.dcMotor.get("dcOmni0");
 
-        //colorFront = hardwareMap.colorSensor.get("colorFront");
+        colorFront = hardwareMap.colorSensor.get("colorFront");
+        colorFront.enableLed(false);
 
         // This is the FitnessGRAM Pacer Test. Line up at the start.
         waitForStart();
@@ -112,11 +114,11 @@ public class CatBallAutonomousLeft extends LinearOpMode {
         launchR.setPower(0);
 
         EssentialHeading target;
-        double gain = 0.012;
+        double gain = 0.008;
 
-        target = new EssentialHeading(40);
+        target = new EssentialHeading(0);
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 4000) && opModeIsActive()) {
+        while (!(omni90.getCurrentPosition() > start + 4625) && opModeIsActive()) {
             fruity.driveWithRamper(target, -0.5, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
@@ -127,45 +129,7 @@ public class CatBallAutonomousLeft extends LinearOpMode {
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
 
-        start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 2000) && opModeIsActive()) {
-            fruity.driveWithRamper(target, -0.5, fruity.getNecessaryRotationPower(target, gain));
-        }
-        fruity.drive(new EssentialHeading(0), 0, 0);
-
-
-        target = new EssentialHeading(-90);
-        while (!fruity.isFacing(target) && opModeIsActive()) {
-            fruity.driveWithRamper(target, 0, fruity.getNecessaryRotationPower(target, 0.02));
-        }
-        fruity.drive(new EssentialHeading(0), 0, 0);
-
-
-        /**start = omni90.getCurrentPosition();
-         fruity.drive(new EssentialHeading(0), 0, 0.2);
-         while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
-         fruity.drive(new EssentialHeading(0), 0, 0);
-
-         start = omni90.getCurrentPosition();
-         fruity.drive(new EssentialHeading(0), -0.2, 0);
-         while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
-         fruity.drive(new EssentialHeading(0), 0, 0);
-
-         double light = lightFront.getLightDetected();
-
-         if (light > 0 && light < 98) {
-         // is bad
-         start = omni90.getCurrentPosition();
-         fruity.drive(new EssentialHeading(-90), -0.2, 0);
-         while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
-         fruity.drive(new EssentialHeading(0), 0, 0);
-         }
-
-         start = omni90.getCurrentPosition();
-         fruity.drive(new EssentialHeading(0), -0.2, 0);
-         while (!(omni90.getCurrentPosition() > start + 2280 && opModeIsActive())) {}
-         fruity.drive(new EssentialHeading(0), 0, 0);**/
-
     }
+
 
 }
