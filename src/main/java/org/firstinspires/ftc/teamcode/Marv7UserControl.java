@@ -31,7 +31,7 @@ public class Marv7UserControl extends OpMode {
     final int LAUNCH_STATE_RETRACTING = 3; // wheels on, flipper retracting
 
     final double FLAP_UP_POSITION = 0.5;
-    final double LAUNCH_MOTOR_SPEED = 1;
+    final double LAUNCH_MOTOR_SPEED = 0.92;
 
     FruityController fruity;
 
