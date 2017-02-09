@@ -41,6 +41,8 @@ public class Marv7UserControl extends OpMode {
     DcMotor launchR;
     Servo launchFlap;
 
+    DcMotor cat;
+
     Servo pinF;
     Servo pinR;
 
@@ -75,6 +77,8 @@ public class Marv7UserControl extends OpMode {
         launchFlap = hardwareMap.servo.get("svFlap0");
         launchFlap.setDirection(Servo.Direction.REVERSE);
 
+        cat = hardwareMap.dcMotor.get("dcCat");
+
         pinF = hardwareMap.servo.get("svPinF");
         pinF.setDirection(Servo.Direction.REVERSE);
         pinR = hardwareMap.servo.get("svPinR");
@@ -107,6 +111,13 @@ public class Marv7UserControl extends OpMode {
         else if (gamepad2.y) {
             pinF.setPosition(pinF.getPosition() + 0.01);
             pinR.setPosition(pinR.getPosition() + 0.01);
+        }
+
+        if (gamepad2.dpad_up && gamepad2.dpad_right && gamepad2.dpad_down && gamepad2.dpad_left) {
+            cat.setPower(-1);
+        }
+        else if (gamepad2.left_bumper && gamepad2.left_trigger > 0.5) {
+            cat.setPower(1);
         }
 
         // Run state machine
