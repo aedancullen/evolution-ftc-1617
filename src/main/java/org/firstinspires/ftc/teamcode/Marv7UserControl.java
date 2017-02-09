@@ -119,6 +119,9 @@ public class Marv7UserControl extends OpMode {
         else if (gamepad2.left_bumper && gamepad2.left_trigger > 0.5) {
             cat.setPower(1);
         }
+        else {
+            cat.setPower(0);
+        }
 
         // Run state machine
         launchStateMachine(gamepad2.right_bumper);
