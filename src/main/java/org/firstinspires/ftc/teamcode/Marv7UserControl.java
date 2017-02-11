@@ -79,15 +79,16 @@ public class Marv7UserControl extends OpMode {
 
         cat = hardwareMap.dcMotor.get("dcCat");
 
+        launchFlap.setPosition(0);
+
         pinF = hardwareMap.servo.get("svPinF");
         pinF.setDirection(Servo.Direction.REVERSE);
         pinR = hardwareMap.servo.get("svPinR");
+        pinF.setPosition(0.128);
+        pinR.setPosition(0.128);
 
-        pinF.setPosition(0);
-        pinR.setPosition(0);
-        launchFlap.setPosition(0);
     }
-
+    
     private long lastMillis = System.currentTimeMillis();
     public void loop() {
         // Driver 1 (driving)
@@ -104,19 +105,19 @@ public class Marv7UserControl extends OpMode {
             collector.setPower(0);
         }
 
-        if (gamepad2.x) {
-            pinF.setPosition(pinF.getPosition() - 0.01);
-            pinR.setPosition(pinR.getPosition() - 0.01);
+        if (gamepad2.dpad_down) {
+            pinF.setPosition(pinF.getPosition() - 0.001);
+            pinR.setPosition(pinR.getPosition() - 0.001);
         }
-        else if (gamepad2.y) {
-            pinF.setPosition(pinF.getPosition() + 0.01);
-            pinR.setPosition(pinR.getPosition() + 0.01);
+        else if (gamepad2.dpad_up) {
+            pinF.setPosition(pinF.getPosition() + 0.001);
+            pinR.setPosition(pinR.getPosition() + 0.001);
         }
 
-        if (gamepad2.dpad_up && gamepad2.dpad_right && gamepad2.dpad_down && gamepad2.dpad_left) {
+        if (gamepad2.left_bumper) {
             cat.setPower(-1);
         }
-        else if (gamepad2.left_bumper && gamepad2.left_trigger > 0.5) {
+        else if (gamepad2.left_trigger > 0.5) {
             cat.setPower(1);
         }
         else {
