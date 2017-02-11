@@ -31,6 +31,8 @@ public class CatBallAutonomousRight extends LinearOpMode {
     Servo launchFlap;
 
     ColorSensor colorFront;
+    Servo pinF;
+    Servo pinR;
 
     /**public void oldinit() {
      fruity = new FruityController(hardwareMap, telemetry, "",
@@ -87,6 +89,12 @@ public class CatBallAutonomousRight extends LinearOpMode {
         launchFlap.setDirection(Servo.Direction.REVERSE);
         omni90 = hardwareMap.dcMotor.get("dcOmni90");
         omni0 = hardwareMap.dcMotor.get("dcOmni0");
+
+        pinF = hardwareMap.servo.get("svPinF");
+        pinF.setDirection(Servo.Direction.REVERSE);
+        pinR = hardwareMap.servo.get("svPinR");
+        pinF.setPosition(0.13);
+        pinR.setPosition(0.13);
 
         colorFront = hardwareMap.colorSensor.get("colorFront");
         colorFront.enableLed(false);

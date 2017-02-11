@@ -84,8 +84,8 @@ public class Marv7UserControl extends OpMode {
         pinF = hardwareMap.servo.get("svPinF");
         pinF.setDirection(Servo.Direction.REVERSE);
         pinR = hardwareMap.servo.get("svPinR");
-        pinF.setPosition(0.128);
-        pinR.setPosition(0.128);
+        pinF.setPosition(0.13);
+        pinR.setPosition(0.13);
 
     }
     

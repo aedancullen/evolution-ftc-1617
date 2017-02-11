@@ -32,6 +32,9 @@ public class LaunchAutoNewLeft extends LinearOpMode {
 
     ColorSensor colorFront;
 
+    Servo pinF;
+    Servo pinR;
+
     /**public void oldinit() {
      fruity = new FruityController(hardwareMap, telemetry, "",
      Arrays.asList(
@@ -87,6 +90,12 @@ public class LaunchAutoNewLeft extends LinearOpMode {
         launchFlap.setDirection(Servo.Direction.REVERSE);
         omni90 = hardwareMap.dcMotor.get("dcOmni270");
         omni0 = hardwareMap.dcMotor.get("dcOmni0");
+
+        pinF = hardwareMap.servo.get("svPinF");
+        pinF.setDirection(Servo.Direction.REVERSE);
+        pinR = hardwareMap.servo.get("svPinR");
+        pinF.setPosition(0.13);
+        pinR.setPosition(0.13);
 
         colorFront = hardwareMap.colorSensor.get("colorFront");
         colorFront.enableLed(false);
