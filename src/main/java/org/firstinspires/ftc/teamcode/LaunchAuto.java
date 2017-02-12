@@ -101,6 +101,8 @@ public class LaunchAuto extends LinearOpMode {
         colorFront = hardwareMap.colorSensor.get("colorFront");
         colorFront.enableLed(false);
 
+        launchFlap.setPosition(0);
+
         // This is the FitnessGRAM Pacer Test. Line up at the start.
         waitForStart();
 
