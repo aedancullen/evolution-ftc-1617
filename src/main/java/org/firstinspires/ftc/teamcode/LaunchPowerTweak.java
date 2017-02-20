@@ -1,20 +1,19 @@
 package org.firstinspires.ftc.teamcode;
 
-
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import java.util.Arrays;
+/**
+ * Created by aedan on 12/17/16.
+ */
 
-import io.github.aedancullen.fruity.FruityController;
-import io.github.aedancullen.fruity.MotorConfigurations;
+@TeleOp(name="LaunchPowerTweak")
+public class LaunchPowerTweak extends OpMode {
 
-@TeleOp(name="Marv Mk7 User Control", group="MarvMk7")
-//@Disabled
-public class Marv7UserControl extends OpMode {
 
     final int LAUNCH_MS_TO_WAITING = 1000; // time until waiting state can be reached (e.g. flipper fall time)
     int LAUNCH_MS_TO_WAITING_LEFT = 0;
@@ -31,40 +30,18 @@ public class Marv7UserControl extends OpMode {
     final int LAUNCH_STATE_RETRACTING = 3; // wheels on, flipper retracting
 
     final double FLAP_UP_POSITION = 0.5;
-    final double LAUNCH_MOTOR_SPEED = 0.92;
-
-    FruityController fruity;
-
-    //Other hardware not used by Fruity
-    DcMotor collector;
-    DcMotor launchL;
-    DcMotor launchR;
-    Servo launchFlap;
-
-    DcMotor cat;
-
-    Servo pinF;
-    Servo pinR;
-
+    double LAUNCH_MOTOR_SPEED = 1;
 
     int launcherState = LAUNCH_STATE_RETRACTING;
 
+    Servo launchFlap;
+
+    DcMotor launchL;
+    DcMotor launchR;
+
+    boolean plast;
 
     public void init() {
-        fruity = new FruityController(hardwareMap, telemetry, "imu",
-                Arrays.asList(
-                        hardwareMap.dcMotor.get("dcOmni0"),
-                        hardwareMap.dcMotor.get("dcOmni90"),
-                        hardwareMap.dcMotor.get("dcOmni180"),
-                        hardwareMap.dcMotor.get("dcOmni270")
-                ),
-                DcMotorSimple.Direction.REVERSE,
-                DcMotor.RunMode.RUN_USING_ENCODER,
-                MotorConfigurations.QUAD_NONDIAGONAL_SHORT);
-
-        fruity.setupRamper(0.001, 0.01, 0.05, false);
-
-        collector = hardwareMap.dcMotor.get("dcCollector0");
         launchL = hardwareMap.dcMotor.get("dcLaunchL");
         launchL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         launchL.setMaxSpeed(2700);
@@ -74,58 +51,33 @@ public class Marv7UserControl extends OpMode {
         launchR.setMaxSpeed(2700);
         launchR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         launchR.setDirection(DcMotorSimple.Direction.REVERSE);
+
         launchFlap = hardwareMap.servo.get("svFlap0");
         launchFlap.setDirection(Servo.Direction.REVERSE);
 
-        cat = hardwareMap.dcMotor.get("dcCat");
-
         launchFlap.setPosition(0);
 
-        pinF = hardwareMap.servo.get("svPinF");
-        pinF.setDirection(Servo.Direction.REVERSE);
-        pinR = hardwareMap.servo.get("svPinR");
-        pinF.setPosition(0.13);
-        pinR.setPosition(0.13);
+        plast = false;
+
 
     }
-    
     private long lastMillis = System.currentTimeMillis();
     public void loop() {
-        // Driver 1 (driving)
-        fruity.handleGamepad(gamepad1, 0.008);
 
-        // Driver 2 (accessories)
-        if (gamepad2.a) {
-            collector.setPower(1);
+        if (gamepad2.dpad_up && !plast) {
+            LAUNCH_MOTOR_SPEED += 0.01; plast = true;
         }
-        else if (gamepad2.b) {
-            collector.setPower(-1);
-        }
-        else {
-            collector.setPower(0);
+        else if (gamepad2.dpad_down && !plast) {
+            LAUNCH_MOTOR_SPEED -= 0.01; plast = true;
         }
 
-        if (gamepad2.dpad_down) {
-            pinF.setPosition(pinF.getPosition() - 0.001);
-            pinR.setPosition(pinR.getPosition() - 0.001);
-        }
-        else if (gamepad2.dpad_up) {
-            pinF.setPosition(pinF.getPosition() + 0.001);
-            pinR.setPosition(pinR.getPosition() + 0.001);
+        if (!gamepad2.dpad_down && !gamepad2.dpad_up){
+            plast = false;
         }
 
-        if (gamepad2.left_bumper) {
-            cat.setPower(-1);
-        }
-        else if (gamepad2.left_trigger > 0.5) {
-            cat.setPower(1);
-        }
-        else {
-            cat.setPower(0);
-        }
-
-        // Run state machine
         launchStateMachine(gamepad2.right_bumper);
+        telemetry.addData("Speed:",LAUNCH_MOTOR_SPEED);
+        telemetry.update();
     }
 
     public void launchStateMachine(boolean trigger) {
@@ -176,12 +128,6 @@ public class Marv7UserControl extends OpMode {
         else if (launcherState == LAUNCH_STATE_RETRACTING) {
             LAUNCH_MS_TO_WAITING_LEFT -= elapsed;
         }
-    }
-
-    public void stop() {
-        launchL.setPower(0);
-        launchR.setPower(0);
-        collector.setPower(0);
     }
 
 }

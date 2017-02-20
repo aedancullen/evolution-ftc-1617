@@ -31,16 +31,22 @@ public class LaunchEncoderMeasure extends LinearOpMode {
 
         launchL.setPower(1);
         launchR.setPower(1);
-        sleep(1000);
+        sleep(2000);
 
         int lTicks = launchL.getCurrentPosition();
         int rTicks = launchR.getCurrentPosition();
 
+
+        sleep(1000);
+
+        int lTicks2 = launchL.getCurrentPosition();
+        int rTicks2 = launchR.getCurrentPosition();
+
         launchL.setPower(0);
         launchR.setPower(0);
 
-        telemetry.addData("lTicks", lTicks);
-        telemetry.addData("rTicks", rTicks);
+        telemetry.addData("lTicks", lTicks2 - lTicks);
+        telemetry.addData("rTicks", rTicks2 - rTicks);
         telemetry.update();
 
         sleep(5000);
