@@ -135,14 +135,17 @@ public class BeaconingBlue extends LinearOpMode {
         // Get correct distance
         target = new EssentialHeading(-90);
         start = omni90.getCurrentPosition();
-        while (!wallHasBopped(new UltrasonicSensor[] {wallBopperRight, wallBopperLeft}, 11.81) && opModeIsActive()) {
-            fruity.driveWithRamper(target, bopWall(new UltrasonicSensor[] {wallBopperRight, wallBopperLeft}, 11.81), fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
+        while ( !(maxMeasure(new UltrasonicSensor[] {wallBopperRight, wallBopperLeft}) < 30) && opModeIsActive()) {
+            fruity.driveWithRamper(target, 0.1, fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
         }
 
         // Move to the line of the first beacon
         target = new EssentialHeading(0);
         start = omni90.getCurrentPosition();
-        while ( !(lineBopperRight.getLightDetected() > lineBopperLeft.getLightDetected() + 10) && opModeIsActive()) {
+        while ( !(lineBopperLeft.getLightDetected() > lineBopperRight.getLightDetected() + 10) && opModeIsActive()) {
+            fruity.driveWithRamper(target, 0.2, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
+        }
+        while ( !(Math.abs(lineBopperRight.getLightDetected() - lineBopperLeft.getLightDetected()) < 10) && opModeIsActive()) {
             fruity.driveWithRamper(target, 0.2, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
@@ -150,8 +153,8 @@ public class BeaconingBlue extends LinearOpMode {
         // Get correct distance
         target = new EssentialHeading(-90);
         start = omni90.getCurrentPosition();
-        while (!wallHasBopped(new UltrasonicSensor[] {wallBopperRight, wallBopperLeft}, 3.15) && opModeIsActive()) {
-            fruity.driveWithRamper(target, bopWall(new UltrasonicSensor[] {wallBopperRight, wallBopperLeft}, 3.15), fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
+        while ( !(maxMeasure(new UltrasonicSensor[] {wallBopperRight, wallBopperLeft}) < 8) && opModeIsActive()) {
+            fruity.driveWithRamper(target, 0.1, fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
         }
 
         // Push beacon
@@ -159,7 +162,7 @@ public class BeaconingBlue extends LinearOpMode {
 
         // Assure that we're away from the line
         target = new EssentialHeading(0);
-        start = omni90.getCurrentPosition();
+        start = omni0.getCurrentPosition();
         while (!(omni0.getCurrentPosition() < start - 500) && opModeIsActive()) {
             fruity.driveWithRamper(target, -0.2, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
         }
@@ -167,7 +170,10 @@ public class BeaconingBlue extends LinearOpMode {
         // Move to the line of the second beacon
         target = new EssentialHeading(0);
         start = omni90.getCurrentPosition();
-        while ( !(lineBopperLeft.getLightDetected() > lineBopperRight.getLightDetected() + 10) && opModeIsActive()) {
+        while ( !(lineBopperRight.getLightDetected() > lineBopperLeft.getLightDetected() + 10) && opModeIsActive()) {
+            fruity.driveWithRamper(target, -0.2, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
+        }
+        while ( !(Math.abs(lineBopperLeft.getLightDetected() - lineBopperRight.getLightDetected()) < 10) && opModeIsActive()) {
             fruity.driveWithRamper(target, -0.2, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
@@ -175,8 +181,8 @@ public class BeaconingBlue extends LinearOpMode {
         // Get correct distance
         target = new EssentialHeading(-90);
         start = omni90.getCurrentPosition();
-        while (!wallHasBopped(new UltrasonicSensor[] {wallBopperRight, wallBopperLeft}, 3.15) && opModeIsActive()) {
-            fruity.driveWithRamper(target, bopWall(new UltrasonicSensor[] {wallBopperRight, wallBopperLeft}, 3.15), fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
+        while ( !(maxMeasure(new UltrasonicSensor[] {wallBopperRight, wallBopperLeft}) < 8) && opModeIsActive()) {
+            fruity.driveWithRamper(target, 0.1, fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
         }
 
         //Push beacon
@@ -184,29 +190,15 @@ public class BeaconingBlue extends LinearOpMode {
 
     }
 
-    public boolean wallHasBopped(UltrasonicSensor boppers[], double level) {
-        double greatest = -1;
-        for (UltrasonicSensor bopper : boppers) {
-            if (bopper.getUltrasonicLevel() > greatest) {
-                greatest = bopper.getUltrasonicLevel();
-            }
-        }
-        if (Math.abs(level - greatest) < 0.5) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 
-    public double bopWall(UltrasonicSensor boppers[], double level) {
+    public double maxMeasure(UltrasonicSensor boppers[]) {
         double greatest = -1;
         for (UltrasonicSensor bopper : boppers) {
             if (bopper.getUltrasonicLevel() > greatest) {
                 greatest = bopper.getUltrasonicLevel();
             }
         }
-        if (greatest > level) {return 0.1;} else {return -0.1;}
+        return greatest;
     }
 
     public void doPush() {
