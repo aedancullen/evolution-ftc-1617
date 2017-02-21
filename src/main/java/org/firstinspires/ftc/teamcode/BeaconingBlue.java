@@ -96,7 +96,7 @@ public class BeaconingBlue extends LinearOpMode {
         target = new EssentialHeading(180);
         start = omni90.getCurrentPosition();
         while (!(omni90.getCurrentPosition() < start - 2660) && opModeIsActive()) {
-            fruity.driveWithRamper(target, -0.5, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
+            fruity.driveWithRamper(target, 0.5, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
 
