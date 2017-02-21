@@ -98,7 +98,7 @@ public class BeaconingBlue extends LinearOpMode {
         // Out to launch pos
         target = new EssentialHeading(180);
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 2600) && opModeIsActive()) {
+        while (!(omni90.getCurrentPosition() > start + 2700) && opModeIsActive()) {
             fruity.driveWithRamper(target, 0.5, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
@@ -142,10 +142,10 @@ public class BeaconingBlue extends LinearOpMode {
         // Move to the line of the first beacon
         target = new EssentialHeading(0);
         start = omni90.getCurrentPosition();
-        while ( !(lineBopperLeft.getLightDetected() > lineBopperRight.getLightDetected() + 0.8) && opModeIsActive()) {
+        while ( !(lineBopperLeft.getLightDetected() > lineBopperRight.getLightDetected() + 0.06) && opModeIsActive()) {
             fruity.driveWithRamper(target, 0.2, fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
         }
-        while ( !(Math.abs(lineBopperRight.getLightDetected() - lineBopperLeft.getLightDetected()) < 0.8) && opModeIsActive()) {
+        while ( !(Math.abs(lineBopperRight.getLightDetected() - lineBopperLeft.getLightDetected()) < 0.06) && opModeIsActive()) {
             fruity.driveWithRamper(target, 0.2, fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
@@ -171,16 +171,16 @@ public class BeaconingBlue extends LinearOpMode {
         target = new EssentialHeading(0);
         start = omni0.getCurrentPosition();
         while (!(omni0.getCurrentPosition() > start + 500) && opModeIsActive()) {
-            fruity.driveWithRamper(target, -0.2, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
+            fruity.driveWithRamper(target, -0.2, fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
         }
 
         // Move to the line of the second beacon
         target = new EssentialHeading(0);
         start = omni90.getCurrentPosition();
-        while ( !(lineBopperRight.getLightDetected() > lineBopperLeft.getLightDetected() + 0.8) && opModeIsActive()) {
+        while ( !(lineBopperRight.getLightDetected() > lineBopperLeft.getLightDetected() + 0.06) && opModeIsActive()) {
             fruity.driveWithRamper(target, -0.2, fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
         }
-        while ( !(Math.abs(lineBopperLeft.getLightDetected() - lineBopperRight.getLightDetected()) < 0.8) && opModeIsActive()) {
+        while ( !(Math.abs(lineBopperLeft.getLightDetected() - lineBopperRight.getLightDetected()) < 0.06) && opModeIsActive()) {
             fruity.driveWithRamper(target, -0.2, fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
@@ -217,18 +217,18 @@ public class BeaconingBlue extends LinearOpMode {
 
         colorFront.enableLed(false);
         if (colorFront.blue() > colorFront.red()) {
-            // good, slide left a tad
+            // good
             target = new EssentialHeading(0);
             start = omni0.getCurrentPosition();
-            while (!(omni0.getCurrentPosition() < start - 300) && opModeIsActive()) {
+            while (!(omni0.getCurrentPosition() > start + 300) && opModeIsActive()) {
                 fruity.driveWithRamper(target, -0.1, fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
             }
             fruity.drive(new EssentialHeading(0), 0, 0);
         } else {
-            // not good, slide right a tad
+            // not good
             target = new EssentialHeading(0);
             start = omni0.getCurrentPosition();
-            while (!(omni0.getCurrentPosition() > start + 300) && opModeIsActive()) {
+            while (!(omni0.getCurrentPosition() < start - 300) && opModeIsActive()) {
                 fruity.driveWithRamper(target, 0.1, fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
             }
             fruity.drive(new EssentialHeading(0), 0, 0);
@@ -236,7 +236,7 @@ public class BeaconingBlue extends LinearOpMode {
 
         // bump it
         // forward
-        target = new EssentialHeading(90);
+        target = new EssentialHeading(-90);
         start = omni90.getCurrentPosition();
         while (!(omni90.getCurrentPosition() > start + 400) && opModeIsActive()) {
             fruity.driveWithRamper(target, 0.1, fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
@@ -244,7 +244,7 @@ public class BeaconingBlue extends LinearOpMode {
         fruity.drive(new EssentialHeading(0), 0, 0);
 
         // reverse
-        target = new EssentialHeading(-90);
+        target = new EssentialHeading(90);
         start = omni90.getCurrentPosition();
         while (!(omni90.getCurrentPosition() < start - 400) && opModeIsActive()) {
             fruity.driveWithRamper(target, 0.1, fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
