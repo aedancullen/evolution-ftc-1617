@@ -112,6 +112,25 @@ public class BeaconingBlue extends LinearOpMode {
         launchL.setPower(0);
         launchR.setPower(0);
 
+        target = new EssentialHeading(-40);
+        start = omni90.getCurrentPosition();
+        while (!(omni90.getCurrentPosition() < start - 6100) && opModeIsActive()) {
+            fruity.driveWithRamper(target, -0.5, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
+        }
+        fruity.drive(new EssentialHeading(0), 0, 0);
+
+        target = new EssentialHeading(-90);
+        while (!fruity.isFacing(target) && opModeIsActive()) {
+            fruity.driveWithRamper(target, 0, fruity.getNecessaryRotationPower(target, gain));
+        }
+        fruity.drive(new EssentialHeading(0), 0, 0);
+
+        target = new EssentialHeading(-90);
+        start = omni90.getCurrentPosition();
+        while (!wallHasBopped(new UltrasonicSensor[] {wallBopperRight, wallBopperLeft}, 11.811)) {
+            fruity.driveWithRamper(target, bopWall(new UltrasonicSensor[] {wallBopperRight, wallBopperLeft}, 11.811), fruity.getNecessaryRotationPower(new EssentialHeading(90), gain));
+        }
+
     }
 
     public boolean wallHasBopped(UltrasonicSensor boppers[], double level) {
@@ -129,14 +148,14 @@ public class BeaconingBlue extends LinearOpMode {
         }
     }
 
-    public double bopWall(UltrasonicSensor boppers[], double level, double gain) {
+    public double bopWall(UltrasonicSensor boppers[], double level) {
         double greatest = -1;
         for (UltrasonicSensor bopper : boppers) {
             if (bopper.getUltrasonicLevel() > greatest) {
                 greatest = bopper.getUltrasonicLevel();
             }
         }
-        return (greatest - level) * gain;
+        if (greatest > level) {return 0.1;} else {return -0.1;}
     }
 
 

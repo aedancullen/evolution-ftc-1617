@@ -113,6 +113,13 @@ public class BeaconingRed extends LinearOpMode{
         launchL.setPower(0);
         launchR.setPower(0);
 
+        target = new EssentialHeading(-40);
+        start = omni90.getCurrentPosition();
+        while (!(omni90.getCurrentPosition() < start - 6100) && opModeIsActive()) {
+            fruity.driveWithRamper(target, -0.5, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
+        }
+        fruity.drive(new EssentialHeading(0), 0, 0);
+
     }
 
     public boolean wallHasBopped(UltrasonicSensor boppers[], double level) {
