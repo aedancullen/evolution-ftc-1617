@@ -14,7 +14,7 @@ import io.github.aedancullen.fruity.EssentialHeading;
 import io.github.aedancullen.fruity.FruityController;
 import io.github.aedancullen.fruity.MotorConfigurations;
 
-@Autonomous(name="Cat Ball Autonomous - RIGHT/BULE", group="MarvMk7")
+@Autonomous(name="CatBallBlue", group="MarvMk7")
 public class CatBallAutonomousRight extends LinearOpMode {
 
     DcMotor omni90;
