@@ -19,8 +19,8 @@ import io.github.aedancullen.fruity.MotorConfigurations;
  * Created by aedan on 12/17/16.
  */
 
-@Autonomous(name="OnlyLaunch")
-public class LaunchAuto extends LinearOpMode {
+@Autonomous(name="OnlyLaunchBlue")
+public class LaunchAutoBlue extends LinearOpMode {
 
 
     DcMotor omni0;
@@ -87,23 +87,31 @@ public class LaunchAuto extends LinearOpMode {
 
         waitForStart();
 
+        telemetry.addData("Waiting", "for 15 seconds");
+        telemetry.update();
+
+        sleep(15000);
+
         EssentialHeading target;
         double gain = 0.009;
         int start;
+
+        telemetry.addData("Waiting", "Now boppin'!");
+        telemetry.update();
 
         launchL.setPower(LAUNCH_MOTOR_SPEED);
         launchR.setPower(LAUNCH_MOTOR_SPEED);
 
         // Out to launch pos
-        target = new EssentialHeading(180);
+        target = new EssentialHeading(135);
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 2700) && opModeIsActive()) {
+        while (!(omni90.getCurrentPosition() > start + 2600) && opModeIsActive()) {
             fruity.driveWithRamper(target, 0.6, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
 
         // Launch routine
-        sleep(500);
+        sleep(1000); // some extra boppers
 
         launchFlap.setPosition(FLAP_UP_POSITION);
         sleep(300);
