@@ -16,22 +16,22 @@ import io.github.aedancullen.fruity.MotorConfigurations;
 //@Disabled
 public class Marv7UserControl extends OpMode {
 
-    final int LAUNCH_MS_TO_WAITING = 1000; // time until waiting state can be reached (e.g. flipper fall time)
+    final int LAUNCH_MS_TO_WAITING = 1100; // time until waiting state can be reached (e.g. flipper fall time)
     int LAUNCH_MS_TO_WAITING_LEFT = 0;
     final int LAUNCH_STATE_WAITING = 0; // wheels off, flipper down
 
     final int LAUNCH_STATE_STARTING = 1; // wheels accelerating, flipper down
 
-    final int LAUNCH_MS_TO_FLIPPING = 500; // time left until flipping state can be reached (e.g wheel accelerate time)
+    final int LAUNCH_MS_TO_FLIPPING = 1000; // time left until flipping state can be reached (e.g wheel accelerate time)
     int LAUNCH_MS_TO_FLIPPING_LEFT = 0;
     final int LAUNCH_STATE_FLIPPING = 2; // wheels on, flipper rising
 
-    final int LAUNCH_MS_TO_RETRACTING = 400; // time left until retracting state can be reached (e.g. flipper rise time)
+    final int LAUNCH_MS_TO_RETRACTING = 300; // time left until retracting state can be reached (e.g. flipper rise time)
     int LAUNCH_MS_TO_RETRACTING_LEFT = 0;
     final int LAUNCH_STATE_RETRACTING = 3; // wheels on, flipper retracting
 
     final double FLAP_UP_POSITION = 0.5;
-    final double LAUNCH_MOTOR_SPEED = 0.92;
+    final double LAUNCH_MOTOR_SPEED = 0.82;
 
     FruityController fruity;
 
