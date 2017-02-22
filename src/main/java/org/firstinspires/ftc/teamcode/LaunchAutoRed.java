@@ -103,9 +103,9 @@ public class LaunchAutoRed extends LinearOpMode {
         launchR.setPower(LAUNCH_MOTOR_SPEED);
 
         // Out to launch pos
-        target = new EssentialHeading(-135);
+        target = new EssentialHeading(135);
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 2600) && opModeIsActive()) {
+        while (!(omni90.getCurrentPosition() > start + 2700) && opModeIsActive()) {
             fruity.driveWithRamper(target, 0.6, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
