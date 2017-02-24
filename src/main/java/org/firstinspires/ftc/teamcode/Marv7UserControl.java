@@ -43,9 +43,6 @@ public class Marv7UserControl extends OpMode {
 
     DcMotor cat;
 
-    Servo pinF;
-    Servo pinR;
-
 
     int launcherState = LAUNCH_STATE_RETRACTING;
 
@@ -81,12 +78,6 @@ public class Marv7UserControl extends OpMode {
 
         launchFlap.setPosition(0);
 
-        pinF = hardwareMap.servo.get("svPinF");
-        pinF.setDirection(Servo.Direction.REVERSE);
-        pinR = hardwareMap.servo.get("svPinR");
-        pinF.setPosition(0.13);
-        pinR.setPosition(0.13);
-
     }
     
     private long lastMillis = System.currentTimeMillis();
@@ -105,14 +96,6 @@ public class Marv7UserControl extends OpMode {
             collector.setPower(0);
         }
 
-        if (gamepad2.dpad_down) {
-            pinF.setPosition(pinF.getPosition() - 0.001);
-            pinR.setPosition(pinR.getPosition() - 0.001);
-        }
-        else if (gamepad2.dpad_up) {
-            pinF.setPosition(pinF.getPosition() + 0.001);
-            pinR.setPosition(pinR.getPosition() + 0.001);
-        }
 
         if (gamepad2.left_bumper) {
             cat.setPower(-1);
