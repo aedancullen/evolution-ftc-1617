@@ -38,9 +38,11 @@ public class Measurement extends OpMode {
         lineBopperRight.enableLed(true);
 
         drop = hardwareMap.servo.get("svDrop0");
+        drop.setDirection(Servo.Direction.REVERSE);
+        drop.setPosition(0);
 
         flap = hardwareMap.servo.get("svFlap0");
-
+        flap.setDirection(Servo.Direction.REVERSE);
         flap.setPosition(0);
 
         wallBopperLeft = hardwareMap.ultrasonicSensor.get("ulWallL");
