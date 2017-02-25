@@ -89,8 +89,6 @@ public class Marv7UserControl extends OpMode {
 
     public void start() {
         drop.setPosition(DROP_NORM_POS);
-        telemetry.addData("This software was created by", "Aedan Cullen, and was NOT WRITTEN with support from THE ADMINISTRATION(TM)");
-        telemetry.update();
     }
     
     private long lastMillis = System.currentTimeMillis();
@@ -113,6 +111,9 @@ public class Marv7UserControl extends OpMode {
             drop.setPosition(DROP_DROP_POS);
         }
 
+        if (gamepad2.dpad_up || gamepad2.dpad_down || gamepad2.dpad_right || gamepad2.dpad_left) {
+            drop.setPosition(DROP_NORM_POS);
+        }
 
         if (gamepad2.left_bumper) {
             cat.setPower(-1);
