@@ -22,6 +22,9 @@ import io.github.aedancullen.fruity.MotorConfigurations;
 @Autonomous(name="BeaconingBlue")
 public class BeaconingBlue extends LinearOpMode {
 
+    final double DROP_NORM_POS = 0.1;
+    final double DROP_DROP_POS = 0.3;
+
     DcMotor omni0;
     DcMotor omni90;
 
@@ -42,6 +45,8 @@ public class BeaconingBlue extends LinearOpMode {
 
     UltrasonicSensor wallBopperLeft;
     UltrasonicSensor wallBopperRight;
+
+    Servo drop;
 
 
     public void runOpMode() {
@@ -77,6 +82,8 @@ public class BeaconingBlue extends LinearOpMode {
         launchR.setDirection(DcMotorSimple.Direction.REVERSE);
         launchFlap = hardwareMap.servo.get("svFlap0");
         launchFlap.setDirection(Servo.Direction.REVERSE);
+        drop = hardwareMap.servo.get("svDrop0");
+        drop.setDirection(Servo.Direction.REVERSE);
         omni0 = hardwareMap.dcMotor.get("dcOmni0");
         omni90 = hardwareMap.dcMotor.get("dcOmni90");
 
@@ -85,8 +92,10 @@ public class BeaconingBlue extends LinearOpMode {
         colorFront.enableLed(false);
 
         launchFlap.setPosition(0);
+        drop.setPosition(0);
 
         waitForStart();
+        drop.setPosition(DROP_NORM_POS);
 
         EssentialHeading target;
         double gain = 0.009;

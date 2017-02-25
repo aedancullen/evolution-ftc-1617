@@ -112,7 +112,7 @@ public class Marv7UserControl extends OpMode {
         }
 
         if (gamepad2.dpad_up || gamepad2.dpad_down || gamepad2.dpad_right || gamepad2.dpad_left) {
-            drop.setPosition(DROP_NORM_POS);
+            drop.setPosition(0);
         }
 
         if (gamepad2.left_bumper) {

@@ -22,6 +22,9 @@ import io.github.aedancullen.fruity.MotorConfigurations;
 @Autonomous(name="OnlyLaunchBlue")
 public class LaunchAutoBlue extends LinearOpMode {
 
+    final double DROP_NORM_POS = 0.1;
+    final double DROP_DROP_POS = 0.3;
+
 
     DcMotor omni0;
     DcMotor omni90;
@@ -43,6 +46,8 @@ public class LaunchAutoBlue extends LinearOpMode {
 
     UltrasonicSensor wallBopperLeft;
     UltrasonicSensor wallBopperRight;
+
+    Servo drop;
 
     public void runOpMode() {
         lineBopperLeft = hardwareMap.lightSensor.get("liLineL");
@@ -76,6 +81,8 @@ public class LaunchAutoBlue extends LinearOpMode {
         launchR.setDirection(DcMotorSimple.Direction.REVERSE);
         launchFlap = hardwareMap.servo.get("svFlap0");
         launchFlap.setDirection(Servo.Direction.REVERSE);
+        drop = hardwareMap.servo.get("svDrop0");
+        drop.setDirection(Servo.Direction.REVERSE);
         omni0 = hardwareMap.dcMotor.get("dcOmni0");
         omni90 = hardwareMap.dcMotor.get("dcOmni90");
 
@@ -84,8 +91,10 @@ public class LaunchAutoBlue extends LinearOpMode {
         colorFront.enableLed(false);
 
         launchFlap.setPosition(0);
+        drop.setPosition(0);
 
         waitForStart();
+        drop.setPosition(DROP_NORM_POS);
 
         telemetry.addData("Waiting", "for 15 seconds");
         telemetry.update();
@@ -103,9 +112,9 @@ public class LaunchAutoBlue extends LinearOpMode {
         launchR.setPower(LAUNCH_MOTOR_SPEED);
 
         // Out to launch pos
-        target = new EssentialHeading(-140);
+        target = new EssentialHeading(-138);
         start = omni90.getCurrentPosition();
-        while (!(omni90.getCurrentPosition() > start + 2800) && opModeIsActive()) {
+        while (!(omni90.getCurrentPosition() > start + 3600) && opModeIsActive()) {
             fruity.driveWithRamper(target, 0.6, fruity.getNecessaryRotationPower(new EssentialHeading(0), gain));
         }
         fruity.drive(new EssentialHeading(0), 0, 0);
