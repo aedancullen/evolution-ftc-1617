@@ -83,7 +83,7 @@ public class Marv7UserControl extends OpMode {
         cat = hardwareMap.dcMotor.get("dcCat");
 
         launchFlap.setPosition(0);
-        drop.setPosition(0);
+        drop.setPosition(DROP_NORM_POS);
 
     }
 
@@ -111,15 +111,15 @@ public class Marv7UserControl extends OpMode {
             drop.setPosition(DROP_DROP_POS);
         }
 
-        if (gamepad2.dpad_up || gamepad2.dpad_down || gamepad2.dpad_right || gamepad2.dpad_left) {
+        if ((gamepad2.dpad_up || gamepad2.dpad_down || gamepad2.dpad_right || gamepad2.dpad_left) && drop.getPosition() == DROP_DROP_POS) {
             drop.setPosition(0);
         }
 
         if (gamepad2.left_bumper) {
-            cat.setPower(-1);
+            cat.setPower(1);
         }
         else if (gamepad2.left_trigger > 0.5) {
-            cat.setPower(1);
+            cat.setPower(-1);
         }
         else {
             cat.setPower(0);
