@@ -227,6 +227,8 @@ public class BeaconingRed extends LinearOpMode {
     }
 
 
+    double lastMaxMeasure = 0;
+
     public double maxMeasure(UltrasonicSensor boppers[]) {
         double total = 0;
         int num = boppers.length;
@@ -238,7 +240,13 @@ public class BeaconingRed extends LinearOpMode {
                 num -= 1;
             }
         }
-        return total / num;
+        if (num > 0) {
+            lastMaxMeasure = total / num;
+            return total / num;
+        }
+        else {
+            return lastMaxMeasure;
+        }
     }
 
     public void doPush() {
