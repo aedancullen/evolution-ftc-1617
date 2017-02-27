@@ -229,10 +229,16 @@ public class BeaconingBlue extends LinearOpMode {
 
     public double maxMeasure(UltrasonicSensor boppers[]) {
         double total = 0;
+        int num = boppers.length;
         for (UltrasonicSensor bopper : boppers) {
-            total += bopper.getUltrasonicLevel();
+            if (bopper.getUltrasonicLevel() != 255) {
+                total += bopper.getUltrasonicLevel();
+            }
+            else {
+                num -= 1;
+            }
         }
-        return total / boppers.length;
+        return total / num;
     }
 
     public void doPush() {
