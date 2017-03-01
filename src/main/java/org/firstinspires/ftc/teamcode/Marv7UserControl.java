@@ -111,7 +111,7 @@ public class Marv7UserControl extends OpMode {
             drop.setPosition(DROP_DROP_POS);
         }
 
-        if ((gamepad2.dpad_up || gamepad2.dpad_down || gamepad2.dpad_right || gamepad2.dpad_left) && drop.getPosition() == DROP_DROP_POS) {
+        if (gamepad2.dpad_up || gamepad2.dpad_down || gamepad2.dpad_right || gamepad2.dpad_left) {
             drop.setPosition(0);
         }
 
