@@ -118,8 +118,8 @@ public class Marv7UserControl extends OpMode {
         if (gamepad2.left_bumper) {
             cat.setPower(1);
         }
-        else if (gamepad2.left_trigger > 0.5) {
-            cat.setPower(-1);
+        else if (gamepad2.left_trigger > 0) {
+            cat.setPower(-gamepad2.left_trigger);
         }
         else {
             cat.setPower(0);
